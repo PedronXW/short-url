@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+
+  short-url:
+    build: .
+    container_name: short-url
+    restart: always
+    entrypoint: sleep infinity
+    ports: 
+      - 3333:3333
+    depends_on:
+      - pg
+    links:
+      - pg
+    environment:
+      DATABASE_URL: postgres://postgres:docker@pg:5432/db
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: secret
+      RESET_PASSWORD_SECRET: reset_password_secret
+    volumes:
+      - .:/app
+
+  pg:
+    image: postgres:16.2
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: db
+    volumes:
+      - ./data/pg:/data/postgres
+
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis:/data/redis
