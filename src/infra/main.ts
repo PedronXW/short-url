@@ -1,17 +1,18 @@
 import { NestFactory } from '@nestjs/core'
-import { json, urlencoded } from 'express'
+import { EnvService } from '../env/env.service'
 import { AppModule } from './app.module'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
 
-  app.use(json({ limit: '50mb' }))
-  app.use(urlencoded({ extended: true, limit: '50mb' }))
-
   app.enableCors()
+
+  const envService = app.get(EnvService)
+
+  const port = envService.get('PORT')
 
   await app.startAllMicroservices()
 
-  await app.listen(3333)
+  await app.listen(port)
 }
 bootstrap()
