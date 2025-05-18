@@ -16,6 +16,8 @@ services:
       REDIS_URL: redis://redis:6379
       JWT_SECRET: secret
       RESET_PASSWORD_SECRET: reset_password_secret
+      SENTRY_DSN: 
+      SENTRY_ENABLED: false
     volumes:
       - .:/app
 
