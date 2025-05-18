@@ -23,7 +23,6 @@ import { UpdateUrlController } from './controllers/url/update/update'
 import { ChangePasswordController } from './controllers/user/change-password/change-password'
 import { CreateUserController } from './controllers/user/create/create'
 import { DeleteUserController } from './controllers/user/delete/delete'
-import { FindUserByIdController } from './controllers/user/find-by-id/find-by-id'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule, EnvModule],
@@ -32,7 +31,6 @@ import { FindUserByIdController } from './controllers/user/find-by-id/find-by-id
     ChangePasswordController,
     CreateUserController,
     DeleteUserController,
-    FindUserByIdController,
     CreateUrlController,
     DeleteUrlController,
     UpdateUrlController,

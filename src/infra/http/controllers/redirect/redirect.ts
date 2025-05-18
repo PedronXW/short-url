@@ -3,13 +3,30 @@ import { NonExistsError } from '@/@shared/errors/non-exists-error'
 import { Public } from '@/auth/public'
 import { FindUrlByShortenedService } from '@/url/services/redirect'
 import { Controller, Get, HttpException, Param, Res } from '@nestjs/common'
+import { ApiBadRequestResponse, ApiOkResponse, ApiParam, ApiTags } from '@nestjs/swagger'
+import { ErrorDocsResponse } from '../../documentation/responses/error-docs-response'
 
 
+@ApiTags('redirect')
 @Public()
 @Controller('/:shortened')
 export class RedirectUrlController {
   constructor(private findUrlByShortened: FindUrlByShortenedService) {}
 
+  @ApiParam({
+    name: 'shortened',
+    description: 'Shortened URL',
+    type: 'string',
+    required: true,
+    example: 'abc123',
+  })
+  @ApiOkResponse({
+    description: 'Redirects to the original URL',
+  })
+  @ApiBadRequestResponse({
+    description: 'Error redirecting',
+    type: ErrorDocsResponse,
+  })
   @Get()
   async handle(
     @Param('shortened') shortened: string,

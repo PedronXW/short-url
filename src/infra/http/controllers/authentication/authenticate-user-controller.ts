@@ -9,7 +9,10 @@ import {
   UnauthorizedException,
   UsePipes,
 } from '@nestjs/common'
+import { ApiBadRequestResponse, ApiBody, ApiOkResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger'
 import { z } from 'zod'
+import { ErrorDocsResponse } from '../../documentation/responses/error-docs-response'
+import { TokenDocsResponse } from '../../documentation/responses/token-docs-response'
 import { ZodValidationPipe } from '../../pipes/zod-validation-pipe'
 
 export const authenticateUserDTO = z.object({
@@ -20,11 +23,35 @@ export const authenticateUserDTO = z.object({
 export type AuthenticateUserDTO = z.infer<typeof authenticateUserDTO>
 
 @Public()
+@ApiTags('authentication')
 @Controller('/session')
 export class AuthenticateUserController {
   constructor(private authenticateUserService: AuthenticateUserService) {}
 
   @Post()
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        email: { type: 'string', format: 'email' },
+        password: { type: 'string', minLength: 8 },
+      },
+      required: ['email', 'password'],
+      description: 'Email and password',
+    },
+  })
+  @ApiOkResponse({
+    type: TokenDocsResponse,
+    description: 'Session created',
+  })
+  @ApiBadRequestResponse({
+    description: 'Error creating a session',
+    type: ErrorDocsResponse,
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized',
+    type: ErrorDocsResponse,
+  })
   @UsePipes(new ZodValidationPipe(authenticateUserDTO))
   async handle(@Body() body: AuthenticateUserDTO) {
     const { email, password } = body
