@@ -1,6 +1,6 @@
 
-const Sentry = require("@sentry/nestjs");
-const { nodeProfilingIntegration } = require("@sentry/profiling-node");
+import * as Sentry from "@sentry/nestjs";
+import { nodeProfilingIntegration } from "@sentry/profiling-node";
 
 // Ensure to call this before requiring any other modules!
 Sentry.init({

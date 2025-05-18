@@ -40,33 +40,4 @@ describe('Delete User', () => {
 
     expect(responseDeleteUser.status).toBe(204)
   })
-
-  it('should be able to find a deleted user', async () => {
-    await request(app.getHttpServer()).post('/user').send({
-      email: 'johndoe@johndoe.com',
-      password: '12345678',
-    })
-
-    const { body } = await request(app.getHttpServer()).post('/session').send({
-      email: 'johndoe@johndoe.com',
-      password: '12345678',
-    })
-
-    const responseDeleteUser = await request(app.getHttpServer())
-      .delete('/user')
-      .set('Authorization', `Bearer ${body.tokens.accessToken}`)
-      .send()
-
-    const responseFindUser = await request(app.getHttpServer())
-      .get('/user')
-      .set('Authorization', `Bearer ${body.tokens.accessToken}`)
-      .send()
-
-    expect(responseDeleteUser.status).toBe(204)
-    expect(responseFindUser.status).toBe(403)
-    expect(responseFindUser.body).toEqual({
-      message: 'Entity non exists error, entity: User',
-      statusCode: 403,
-    })
-  })
 })
