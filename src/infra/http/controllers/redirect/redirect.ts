@@ -1,6 +1,6 @@
 import { InactiveError } from '@/@shared/errors/inactive-error'
 import { NonExistsError } from '@/@shared/errors/non-exists-error'
-import { Public } from '@/auth/public'
+import { Public } from '@/infra/auth/public'
 import { FindUrlByShortenedService } from '@/url/services/redirect'
 import { Controller, Get, HttpException, Param, Res } from '@nestjs/common'
 import { ApiBadRequestResponse, ApiOkResponse, ApiParam, ApiTags } from '@nestjs/swagger'

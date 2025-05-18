@@ -1,6 +1,6 @@
 import { NonExistsError } from '@/@shared/errors/non-exists-error'
-import { CurrentUser } from '@/auth/current-user-decorator'
-import { UserPayload } from '@/auth/jwt-strategy'
+import { CurrentUser } from '@/infra/auth/current-user-decorator'
+import { UserPayload } from '@/infra/auth/jwt-strategy'
 import { ErrorDocsResponse } from '@/infra/http/documentation/responses/error-docs-response'
 import { UrlPresenter } from '@/infra/http/presenters/presenter-url'
 import { FindUrlByIdService } from '@/url/services/find-by-id'

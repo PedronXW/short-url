@@ -1,4 +1,4 @@
-import { EnvService } from '@/env/env.service'
+import { EnvService } from '@/infra/env/env.service'
 import { InMemoryUrlRepository } from 'test/repositories/InMemoryUrlRepository'
 import { CreateUrlService } from './create'
 

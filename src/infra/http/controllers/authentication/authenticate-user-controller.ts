@@ -1,5 +1,5 @@
 import { WrongCredentialsError } from '@/@shared/errors/wrong-credentials-error'
-import { Public } from '@/auth/public'
+import { Public } from '@/infra/auth/public'
 import { AuthenticateUserService } from '@/user/services/authenticate'
 import {
   BadRequestException,

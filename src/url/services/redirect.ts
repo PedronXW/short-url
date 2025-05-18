@@ -1,6 +1,6 @@
 import { Either, left, right } from '@/@shared/either'
 import { NonExistsError } from '@/@shared/errors/non-exists-error'
-import { EnvService } from '@/env/env.service'
+import { EnvService } from '@/infra/env/env.service'
 import { Url } from '@/url/entities/url'
 import { UrlRepository } from '@/url/repositories/repository'
 import { Injectable } from '@nestjs/common'

@@ -1,4 +1,4 @@
-import { Public } from '@/auth/public'
+import { Public } from '@/infra/auth/public'
 import { ErrorDocsResponse } from '@/infra/http/documentation/responses/error-docs-response'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { UserPresenter } from '@/infra/http/presenters/presenter'

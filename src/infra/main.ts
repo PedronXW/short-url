@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { EnvService } from '../env/env.service';
 import { AppModule } from './app.module';
+import { EnvService } from './env/env.service';
 import "./instrument";
 
 async function bootstrap() {

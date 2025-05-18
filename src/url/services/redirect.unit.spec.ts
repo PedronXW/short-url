@@ -1,4 +1,4 @@
-import { EnvService } from '@/env/env.service'
+import { EnvService } from '@/infra/env/env.service'
 import { UrlFactory } from 'test/factories/unit/UrlFactory'
 import { InMemoryUrlRepository } from 'test/repositories/InMemoryUrlRepository'
 import { FindUrlByShortenedService } from './redirect'
