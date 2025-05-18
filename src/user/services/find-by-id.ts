@@ -19,7 +19,7 @@ export class FindUserByIdService {
   }: FindUserByIdServiceRequest): Promise<FindUserByIdServiceResponse> {
     const user = await this.userRepository.findUserById(id)
 
-    if (!user) {
+    if (!user?.active) {
       return left(new NonExistsError('User'))
     }
 

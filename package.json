@@ -51,6 +51,7 @@
     "eslint-plugin-prettier": "^5.2.2",
     "globals": "^16.0.0",
     "jest": "^29.7.0",
+    "nanoid": "5.1.5",
     "passport-jwt": "4.0.1",
     "prettier": "^3.4.2",
     "prisma": "^6.8.1",
@@ -84,7 +85,7 @@
       "@/(.*)": "<rootDir>/src/$1",
       "test/(.*)": "<rootDir>/test/$1"
     },
-    "setupFilesAfterEnv":[
+    "setupFilesAfterEnv": [
       "<rootDir>/test/setup.ts"
     ]
   }
