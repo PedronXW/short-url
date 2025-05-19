@@ -1,4 +1,4 @@
-FROM node:24.0.2-slim
+FROM public.ecr.aws/docker/library/node:24.0.2-slim
 
 USER root
 WORKDIR /app
