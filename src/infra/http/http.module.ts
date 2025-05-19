@@ -14,6 +14,7 @@ import { Module } from '@nestjs/common'
 import { CryptographyModule } from '../cryptography/cryptograpy.module'
 import { DatabaseModule } from '../database/database.module'
 import { AuthenticateUserController } from './controllers/authentication/authenticate-user-controller'
+import { HealthController } from './controllers/health/health.controller'
 import { RedirectUrlController } from './controllers/redirect/redirect'
 import { CreateUrlController } from './controllers/url/create/create'
 import { DeleteUrlController } from './controllers/url/delete/delete'
@@ -36,6 +37,7 @@ import { DeleteUserController } from './controllers/user/delete/delete'
     UpdateUrlController,
     FindUrlByIdController,
     FindUrlsController,
+    HealthController,
     RedirectUrlController
   ],
   providers: [
