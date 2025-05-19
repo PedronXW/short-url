@@ -6,6 +6,12 @@ import { UrlPresenter } from '@/infra/http/presenters/presenter-url'
 import { FindUrlsService } from '@/url/services/find'
 import { Controller, Get, HttpException, Query } from '@nestjs/common'
 import { ApiBadRequestResponse, ApiHeader, ApiOkResponse, ApiTags } from '@nestjs/swagger'
+import { z } from 'zod'
+
+const paginationSchema = z.object({
+  page: z.string().transform(Number).pipe(z.number().int().positive().min(1)).optional(),
+  limit: z.string().transform(Number).pipe(z.number().int().positive().min(1)).optional(),
+});
 
 @ApiTags('url')
 @Controller('/url')
@@ -60,9 +66,17 @@ export class FindUrlsController {
   ) {
     const { sub } = url
 
+    const result = paginationSchema.safeParse({ page, limit });
+
+    if (!result.success) {
+      throw new HttpException(result.error.errors.map(error => error.message).join(', '), 400)
+    }
+
+    const { page: validatedPage = 1, limit: validatedLimit = 10 } = result.data;
+
     const receivedUrl = await this.findUrlsService.execute({
-      limit: Number.parseInt(limit),
-      page: Number.parseInt(page),
+      limit: validatedLimit,
+      page: validatedPage,
       userId: sub,
     })
 
