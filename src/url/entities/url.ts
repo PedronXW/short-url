@@ -9,18 +9,12 @@ export type UrlProps = {
   createdAt: Date
   updatedAt: Date
   accessCount: number
-  active: boolean
+  deletedAt?: Date
 }
 
 export class Url extends Entity<UrlProps> {
 
-  get active(): boolean {
-    return this.props.active
-  }
-
-  set active(active: boolean) {
-    this.props.active = active
-  }
+  
 
   get url(): string {
     return this.props.url
@@ -28,6 +22,14 @@ export class Url extends Entity<UrlProps> {
 
   set url(url: string) {
     this.props.url = url
+  }
+
+  get deletedAt(): Date | undefined {
+    return this.props.deletedAt
+  }
+
+  set deletedAt(deletedAt: Date | undefined) {
+    this.props.deletedAt = deletedAt
   }
 
   get shortened(): string {
@@ -75,7 +77,7 @@ export class Url extends Entity<UrlProps> {
   }
 
   static create(
-    props: Optional<UrlProps, 'active' | 'createdAt' | 'updatedAt' | 'accessCount'>,
+    props: Optional<UrlProps, 'deletedAt' | 'createdAt' | 'updatedAt' | 'accessCount'>,
     id?: EntityId,
   ): Url {
     const url = new Url(
@@ -84,7 +86,7 @@ export class Url extends Entity<UrlProps> {
         createdAt: props.createdAt ?? new Date(),
         updatedAt: props.updatedAt ?? new Date(),
         accessCount: props.accessCount ?? 0,
-        active: props.active ?? true,
+        deletedAt: props.deletedAt ?? undefined,
       },
       id,
     )

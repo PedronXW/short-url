@@ -15,7 +15,7 @@ describe('UrlMapper', () => {
       createdAt: new Date(),
       accessCount: 0,
       updatedAt: new Date(),
-      active: true,
+      deletedAt: null,
     }
 
     // Act
@@ -31,7 +31,7 @@ describe('UrlMapper', () => {
           createdAt: raw.createdAt,
           accessCount: 0,
           updatedAt: raw.updatedAt,
-          active: true,
+          deletedAt: undefined,
         },
         new EntityId('1'),
       ),
@@ -44,7 +44,7 @@ describe('UrlMapper', () => {
       {
         shortened: 'shortened-url',
         url: 'https://example.com',
-        active: true,
+        deletedAt: undefined,
         creator: new EntityId('any_assign_id'),
       },
       new EntityId('1'),
@@ -61,7 +61,7 @@ describe('UrlMapper', () => {
       createdAt: expect.any(Date),
       updatedAt: expect.any(Date),
       accessCount: 0,
-      active: true,
+      deletedAt: null,
       user: {
         connect: {
           id: 'any_assign_id',

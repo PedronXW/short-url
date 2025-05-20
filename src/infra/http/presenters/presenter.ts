@@ -3,7 +3,7 @@ import { User } from '@/user/entities/user'
 export type UserHTTP = {
   id: string
   email: string
-  active: boolean
+  deletedAt?: Date
 }
 
 export class UserPresenter {
@@ -11,7 +11,7 @@ export class UserPresenter {
     return {
       id: user.id.getValue(),
       email: user.email,
-      active: user.active,
+      deletedAt: user.deletedAt,
     }
   }
 }

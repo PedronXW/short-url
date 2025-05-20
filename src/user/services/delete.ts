@@ -23,7 +23,7 @@ export class DeleteUserService {
       return left(new NonExistsError('User'))
     }
 
-    if (!user.active) {
+    if (user.deletedAt) {
       return left(new InactiveError('User'))
     }
 

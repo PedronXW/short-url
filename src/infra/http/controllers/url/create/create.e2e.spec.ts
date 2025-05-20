@@ -23,12 +23,9 @@ describe('Create Url', () => {
   })
 
   it('should be able to create a url', async () => {
-    const responseUser = await request(app.getHttpServer()).post('/user').send({
-      name: 'John Doe',
+    await request(app.getHttpServer()).post('/user').send({
       email: 'johndoe@johndoe.com',
       password: '12345678',
-      document: '12345678910',
-      phone: '12345678910',
     })
 
     const { body } = await request(app.getHttpServer()).post('/session').send({
@@ -47,7 +44,7 @@ describe('Create Url', () => {
     expect(responseUrl.body).toEqual({
       url: {
         id: expect.any(String),
-        active: true,
+        deletedAt: undefined,
         url: 'https://www.google.com',
         accessCount: 0,
         shortUrl: expect.any(String),

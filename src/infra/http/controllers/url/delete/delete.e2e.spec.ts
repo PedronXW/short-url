@@ -24,11 +24,8 @@ describe('Delete Url', () => {
 
   it('should be able to delete a url', async () => {
     await request(app.getHttpServer()).post('/user').send({
-      name: 'John Doe',
       email: 'johndoe@johndoe.com',
       password: '12345678',
-      document: '12345678910',
-      phone: '12345678910',
     })
 
     const { body } = await request(app.getHttpServer()).post('/session').send({
@@ -53,11 +50,8 @@ describe('Delete Url', () => {
 
   it('should be able to delete a url and not find after a search', async () => {
     await request(app.getHttpServer()).post('/user').send({
-      name: 'John Doe',
       email: 'johndoe@johndoe.com',
       password: '12345678',
-      document: '12345678910',
-      phone: '12345678910',
     })
 
     const { body } = await request(app.getHttpServer()).post('/session').send({
@@ -88,8 +82,18 @@ describe('Delete Url', () => {
 
     expect(responseSearch.status).toBe(200)
     expect(responseSearch.body).toEqual({
-      urls: [],
-      urlsCount: 0,
+      urls: [{
+            accessCount: 0,
+            createdAt: expect.any(String),
+            deletedAt: expect.any(String),
+            id: expect.any(String),
+            shortUrl: expect.any(String),
+            updatedAt: expect.any(String),
+            url: "https://www.google.com",
+            userId: expect.any(String),
+          },
+      ],
+      urlsCount: 1,
     })
   })
 })

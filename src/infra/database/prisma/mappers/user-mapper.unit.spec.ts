@@ -9,7 +9,7 @@ describe('UserMapper', () => {
       id: '1',
       email: 'any_email',
       password: 'any_password',
-      active: true,
+      deletedAt: null,
     }
 
     // Act
@@ -21,7 +21,7 @@ describe('UserMapper', () => {
         {
           email: 'any_email',
           password: 'any_password',
-          active: true,
+          deletedAt: undefined,
         },
         new EntityId('1'),
       ),
@@ -34,7 +34,7 @@ describe('UserMapper', () => {
       {
         email: 'any_email',
         password: 'any_password',
-        active: true,
+        deletedAt: undefined,
       },
       new EntityId('1'),
     )
@@ -47,7 +47,7 @@ describe('UserMapper', () => {
       id: '1',
       email: 'any_email',
       password: 'any_password',
-      active: true,
+      deletedAt: null,
     })
   })
 })

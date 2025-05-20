@@ -24,7 +24,7 @@ export class FindUrlByShortenedService {
       return left(new NonExistsError('Url'))
     }
 
-    if(!url.active) {
+    if(url.deletedAt) {
       return left(new NonExistsError('Url'))
     }
 

@@ -25,6 +25,10 @@ export class FindUrlByIdService {
       return left(new NonExistsError('Url'))
     }
 
+    if (url.deletedAt) {
+      return left(new NonExistsError('Url'))
+    }
+
     return right(url)
   }
 }

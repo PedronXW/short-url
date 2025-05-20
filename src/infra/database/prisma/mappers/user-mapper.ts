@@ -7,7 +7,7 @@ export class UserMapper {
       {
         email: raw.email,
         password: raw.password,
-        active: raw.active,
+        deletedAt: raw.deletedAt !== null ? new Date(raw.deletedAt) : undefined,
       },
       new EntityId(raw.id),
     )
@@ -18,7 +18,7 @@ export class UserMapper {
       id: user.id.getValue(),
       email: user.email,
       password: user.password,
-      active: user.active,
+      deletedAt: user.deletedAt ? user.deletedAt : null,
     }
   }
 }

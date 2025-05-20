@@ -9,6 +9,6 @@ describe('User', () => {
 
     expect(user.email).toBe('any_email')
     expect(user.password).toBe('any_password')
-    expect(user.active).toBeTruthy()
+    expect(user.deletedAt).toBeUndefined()
   })
 })

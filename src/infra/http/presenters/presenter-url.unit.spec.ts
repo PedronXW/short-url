@@ -15,7 +15,7 @@ describe('PresenterUrl', () => {
       createdAt: url.createdAt,
       updatedAt: url.updatedAt,
       accessCount: 0,
-      active: url.active,
+      deletedAt: url.deletedAt,
       userId: url.creator?.getValue(),
     })
   })

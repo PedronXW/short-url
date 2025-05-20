@@ -33,7 +33,7 @@ export class ChangePasswordService {
       return left(new NonExistsError('User'))
     }
 
-    if (user.active === false) {
+    if (user.deletedAt) {
       return left(new InactiveError('User'))
     }
 

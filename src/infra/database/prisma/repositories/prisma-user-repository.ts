@@ -32,7 +32,7 @@ export class PrismaUserRepository implements UserRepository {
     const deletedUser = await this.prisma.user.update({
       where: { id },
       data: {
-        active: false,
+        deletedAt: new Date(),
       },
     })
 

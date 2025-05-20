@@ -11,7 +11,7 @@ export class UrlMapper {
         createdAt: raw.createdAt,
         updatedAt: raw.updatedAt,
         accessCount: raw.accessCount,
-        active: raw.active,
+        deletedAt: raw.deletedAt !== null ? new Date(raw.deletedAt) : undefined,
       },
       new EntityId(raw.id),
     )
@@ -25,7 +25,7 @@ export class UrlMapper {
       accessCount: data.accessCount,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
-      active: data.active,
+      deletedAt: data.deletedAt ? data.deletedAt : null,
       ...(data.creator && {
         user: {
           connect: {

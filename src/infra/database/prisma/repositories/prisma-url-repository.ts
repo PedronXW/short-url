@@ -51,7 +51,7 @@ export class PrismaUrlRepository implements UrlRepository {
 
   async findUrlByShortened(shortened: string, creator?: string): Promise<Url | undefined> {
     const url = await this.prisma.url.findFirst({
-      where: { shortened, active: true, userId: creator },
+      where: { shortened, userId: creator, deletedAt: null },
       include: {
         user: true,
       },
@@ -67,7 +67,7 @@ export class PrismaUrlRepository implements UrlRepository {
   async deleteUrl(id: string): Promise<boolean> {
     const deletedUrl = await this.prisma.url.update({
       where: { id },
-      data: { active: false },
+      data: { deletedAt: new Date() },
     })
 
     return !!deletedUrl
@@ -80,7 +80,6 @@ export class PrismaUrlRepository implements UrlRepository {
   ): Promise<FindUrlsResponse> {
     const urls = await this.prisma.url.findMany({
       where: {
-        active: true,
         userId,
       },
       include: {
@@ -92,7 +91,6 @@ export class PrismaUrlRepository implements UrlRepository {
 
     const total = await this.prisma.url.count({
       where: {
-        active: true,
         userId,
       },
     })

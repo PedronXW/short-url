@@ -7,7 +7,7 @@ export type UrlHTTP = {
   createdAt: Date
   updatedAt: Date
   accessCount: number
-  active: boolean
+  deletedAt?: Date
   userId?: string
 }
 
@@ -20,7 +20,7 @@ export class UrlPresenter {
       createdAt: url.createdAt,
       updatedAt: url.updatedAt,
       accessCount: url.accessCount,
-      active: url.active,
+      deletedAt: url.deletedAt,
       userId: url.creator ? url.creator.getValue(): undefined,
     }
   }

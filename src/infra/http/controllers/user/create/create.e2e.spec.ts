@@ -32,7 +32,7 @@ describe('Create User', () => {
     expect(responseUser.body).toEqual({
       user: {
         id: expect.any(String),
-        active: true,
+        deletedAt: undefined,
         email: 'johndoe@johndoe.com',
       },
     })

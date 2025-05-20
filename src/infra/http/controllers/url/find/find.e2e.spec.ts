@@ -24,11 +24,8 @@ describe('FindUrls', () => {
 
   it('should be able to find every url created by the user with a session', async () => {
     await request(app.getHttpServer()).post('/user').send({
-      name: 'John Doe',
       email: 'johndoe@johndoe.com',
       password: '12345678',
-      document: '12345678910',
-      phone: '12345678910',
     })
 
     const { body } = await request(app.getHttpServer()).post('/session').send({
@@ -59,7 +56,7 @@ describe('FindUrls', () => {
     })
     expect(responseSearch.body.urls[0]).toEqual({
         id: expect.any(String),
-        active: true,
+        deletedAt: undefined,
         url: 'https://www.google.com',
         shortUrl: expect.any(String),
         accessCount: 0,

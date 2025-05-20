@@ -12,6 +12,6 @@ describe('Url', () => {
     expect(url.id).toBeInstanceOf(EntityId)
     expect(url.url).toBe('https://example.com')
     expect(url.shortened).toBe('shortened-url')
-    expect(url.active).toBe(true)
+    expect(url.deletedAt).toBe(undefined)
   })
 })

@@ -11,7 +11,7 @@ describe('PresenterUser', () => {
     expect(httpResponse).toEqual({
       id: user.id.getValue(),
       email: user.email,
-      active: user.active,
+      deletedAt: user.deletedAt,
     })
   })
 })

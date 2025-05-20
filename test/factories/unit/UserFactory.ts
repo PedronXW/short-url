@@ -9,7 +9,7 @@ export class UserFactory {
       {
         email: props.email || 'any_email@email.com',
         password: await fakeHasher.hash(props?.password || 'any_password'),
-        active: props.active || true,
+        deletedAt: props.deletedAt || undefined,
       },
       id || new EntityId('user-id'),
     )

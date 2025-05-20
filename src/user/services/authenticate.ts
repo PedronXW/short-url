@@ -34,7 +34,7 @@ export class AuthenticateUserService {
       return left(new WrongCredentialsError())
     }
 
-    if (!user.active) {
+    if (user.deletedAt) {
       return left(new InactiveError('User'))
     }
 

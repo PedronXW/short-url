@@ -5,7 +5,7 @@ import { Optional } from '@/@shared/types/optional'
 export type UserProps = {
   email: string
   password: string
-  active: boolean
+  deletedAt?: Date
 }
 
 export class User extends Entity<UserProps> {
@@ -26,19 +26,19 @@ export class User extends Entity<UserProps> {
     this.props.password = password
   }
 
-  get active(): boolean {
-    return this.props.active
+  get deletedAt(): Date | undefined {
+    return this.props.deletedAt
   }
 
-  set active(active: boolean) {
-    this.props.active = active
+  set deletedAt(deletedAt: Date | undefined) {
+    this.props.deletedAt = deletedAt
   }
 
-  static create(props: Optional<UserProps, 'active'>, id?: EntityId): User {
+  static create(props: Optional<UserProps, 'deletedAt'>, id?: EntityId): User {
     const user = new User(
       {
         ...props,
-        active: props.active ?? true,
+        deletedAt: props.deletedAt ?? undefined,
       },
       id,
     )

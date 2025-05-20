@@ -46,7 +46,7 @@ export class FindUrlByIdController {
                 updatedAt: { type: 'string', format: 'date-time' },
                 userId: { type: 'string', format: 'uuid' },
                 accessCount: { type: 'number' },
-                active: { type: 'boolean' },
+                deletedAt: { type: 'string', format: 'date-time' },
               },
             },
           },

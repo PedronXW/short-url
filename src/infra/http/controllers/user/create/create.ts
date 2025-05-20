@@ -42,7 +42,7 @@ export class CreateUserController {
           properties: {
             id: { type: 'string', format: 'uuid' },
             email: { type: 'string', maxLength: 140 },
-            active: { type: 'boolean' },
+            deletedAt: { type: 'string', format: 'date-time' },
           },
         },
       },

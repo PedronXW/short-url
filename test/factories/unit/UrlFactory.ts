@@ -10,7 +10,8 @@ export class UrlFactory {
         createdAt: props.createdAt || new Date(),
         updatedAt: props.updatedAt || new Date(),
         creator: props.creator || new EntityId('creator-id'),
-        active: props.active || true,
+        accessCount: props.accessCount || 0,
+        deletedAt: props.deletedAt || undefined,
       },
       id || new EntityId('url-id'),
     )
