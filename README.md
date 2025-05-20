@@ -1,98 +1,27 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# ShortURL
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Essa aplicação é a implementação de um encurtador de URL, ela possui sistema de autenticação, armazenamento e redirecionamento, e foi feita com o intuito de obdecer às especificações dispostas nesse arquivo: https://docs.google.com/document/d/1eZpPju0EHUO5tzGgi3J3G0dtGX8G9i6eh1FU39WYg2M/edit?tab=t.0
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Endereço base da aplicação em produção: http://shorturllb-786796229.us-east-1.elb.amazonaws.com:3333/
 
-## Description
+## Como inicializar a aplicação
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Para iniciar a aplicação é necessário clonar a aplicação do repositório, entrar na pasta raiz do projeto e em seguida subir os containers docker utilizando o docker compose, com o comando "docker compose up -d" ou "docker-compose up -d", dependendo da versão que estiver utilizando. Após o comando, o container vai ser inicializado e então o processo de configuração do banco de dados, assim como a inicialização da aplicação acontecerá.
 
-## Project setup
+## Documentação de Endpoints
 
-```bash
-$ npm install
-```
+A documentação de endpoints foi feita utilizando a ferramente Swagger e pode ser encontrada ao iniciar a aplicação com o link: http://localhost:3333/v1/docs#/ se estiver com a aplicação rodando localmente ou http://shorturllb-786796229.us-east-1.elb.amazonaws.com:3333/v1/docs#/ para abrir a documentação em produção
 
-## Compile and run the project
+## Variáveis de Ambiente
 
-```bash
-# development
-$ npm run start
+Todas as variáveis de ambiente estão descritas no arquivo docker-compose.yaml e os valores disponíveis no repositório são valores randômicos e podem ser substituidos para a utilização da aplicação.
 
-# watch mode
-$ npm run start:dev
+## Testes
 
-# production mode
-$ npm run start:prod
-```
+Os testes são escritos utilizando o framework Jest, ele é utilizado em todos os tipos de teste e facilita o processo de gerenciamento dos ambientes além da própria execução, e a biblioteca Supertest, utilizada para simular as requisições nos endpoints necessários para a execução do teste.
 
-## Run tests
+Os testes unitários estão presentes, principalmente, dentro do domínio da aplicação, na parte de Services, e podem ser identificados ao analizar o nome dos arquivos, eles possuem final ".unit.spec.ts". Todos os testes unítarios utilizam de repositórios em memória para executar suas verificações, esses repositórios podem ser encontrados dentro da pasta "test", na raiz da aplicação.
 
-```bash
-# unit tests
-$ npm run test
+Já os testes E2E podem ser encontrados na parte de infra da aplicação, junto com os controllers dos endpoints que eles estão testando. Estes testes funcionam simulando interações reais do usuário, assim, no ínicio dos testes é gerado um novo banco para que os dados sejam armazenados nele e este mesmo banco é apagado após cada um dos testes, criando um ambiente único e sem interferencias para cada teste.
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Para realizar os testes é necessário entrar no container com o comando "docker compose exec short-url sh" e em seguinda realizar os testes com o comando "npm run test" para fazer todos os testes ou somente "npm run test:unit" para rodar os testes unitários.
