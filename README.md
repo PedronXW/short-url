@@ -2,7 +2,6 @@
 
 Essa aplicação é a implementação de um encurtador de URL, ela possui sistema de autenticação, armazenamento e redirecionamento, e foi feita com o intuito de obdecer às especificações dispostas nesse arquivo: https://docs.google.com/document/d/1eZpPju0EHUO5tzGgi3J3G0dtGX8G9i6eh1FU39WYg2M/edit?tab=t.0
 
-Endereço base da aplicação em produção: http://shorturllb-786796229.us-east-1.elb.amazonaws.com:3333/
 
 ## Como inicializar a aplicação
 
@@ -10,7 +9,7 @@ Para iniciar a aplicação é necessário clonar a aplicação do repositório, 
 
 ## Documentação de Endpoints
 
-A documentação de endpoints foi feita utilizando a ferramente Swagger e pode ser encontrada ao iniciar a aplicação com o link: http://localhost:3333/v1/docs#/ se estiver com a aplicação rodando localmente ou http://shorturllb-786796229.us-east-1.elb.amazonaws.com:3333/v1/docs#/ para abrir a documentação em produção
+A documentação de endpoints foi feita utilizando a ferramente Swagger e pode ser encontrada ao iniciar a aplicação com o link: http://localhost:3333/v1/docs#/ se estiver com a aplicação rodando localmente
 
 ## Variáveis de Ambiente
 
